@@ -4,29 +4,19 @@
 import { Box, Separator, Text, VStack } from "@chakra-ui/react";
 import { DefaultMapProvider, MapContainer, MapAnchor, useMapModel } from "@open-pioneer/map";
 import { BasemapSwitcher } from "@open-pioneer/basemap-switcher";
-import { OverviewMap } from "@open-pioneer/overview-map";
-import { useId, useMemo } from "react";
-import TileLayer from "ol/layer/Tile";
-import OSM from "ol/source/OSM";
+import { useId } from "react";
 
 const MAP_ID = "main";
 
 export function Map() {
     const { map } = useMapModel(MAP_ID);
-    const overviewMapLayer = useMemo(
-        () =>
-            new TileLayer({
-                source: new OSM()
-            }),
-        []
-    );
 
     if (!map) {
         return null;
     }
 
     return (
-        <div style={{ width: "100%", height: "100vh" }}>
+        <div style={{ width: "100%", height: "100%" }}>
             {map && (
                 <DefaultMapProvider map={map}>
                     <MapContainer aria-label="Weather map">
