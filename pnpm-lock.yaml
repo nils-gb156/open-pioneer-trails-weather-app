@@ -372,6 +372,12 @@ importers:
         specifier: workspace:*
         version: link:../../packages/sample-package
 
+  src/apps/weather-app:
+    dependencies:
+      '@open-pioneer/runtime':
+        specifier: 'catalog:'
+        version: 4.5.0(@types/react@19.2.14)(typescript@5.9.3)
+
   src/packages/sample-package:
     dependencies:
       '@open-pioneer/runtime':
