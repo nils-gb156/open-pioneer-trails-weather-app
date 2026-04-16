@@ -7,6 +7,7 @@ import {
     SimpleLayer
 } from "@open-pioneer/map";
 import TileLayer from "ol/layer/Tile";
+import XYZ from "ol/source/XYZ";
 import OSM from "ol/source/OSM";
 
 export const MAP_ID = "main";
@@ -29,6 +30,32 @@ export class MainMapProvider implements MapConfigProvider {
                     olLayer: new TileLayer({
                         source: new OSM(),
                         properties: { title: "OSM" }
+                    }),
+                    isBaseLayer: true
+                }),
+                layerFactory.create({
+                    type: SimpleLayer,
+                    title: "ArcGIS Gray Vector",
+                    olLayer: new TileLayer({
+                        source: new XYZ({
+                            url: "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+                            crossOrigin: "anonymous",
+                            maxZoom: 16
+                        }),
+                        properties: { title: "ArcGIS Gray" }
+                    }),
+                    isBaseLayer: true
+                }),
+                layerFactory.create({
+                    type: SimpleLayer,
+                    title: "ArcGIS Dark Gray Vector",
+                    olLayer: new TileLayer({
+                        source: new XYZ({
+                            url: "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+                            crossOrigin: "anonymous",
+                            maxZoom: 16
+                        }),
+                        properties: { title: "ArcGIS Dark Gray" }
                     }),
                     isBaseLayer: true
                 })
