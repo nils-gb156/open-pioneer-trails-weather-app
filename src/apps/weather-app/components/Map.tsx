@@ -10,7 +10,7 @@ import { Legend } from "@open-pioneer/legend";
 import Point from "ol/geom/Point";
 import { transform } from "ol/proj";
 import { useEffect, useState, useId } from "react";
-import { LuRuler } from "react-icons/lu";
+import { LuRuler, LuMenu, LuImages } from "react-icons/lu";
 import { InitialExtent, ZoomIn, ZoomOut } from "@open-pioneer/map-navigation";
 import { Measurement } from "@open-pioneer/measurement";
 
@@ -25,10 +25,20 @@ export function Map() {
     const { map } = useMapModel(MAP_ID);
     const [clickedLocation, setClickedLocation] = useState<ClickedLocation | null>(null);
     const [measurementIsActive, setMeasurementIsActive] = useState<boolean>(false);
+    const [tocIsActive, setTocIsActive] = useState<boolean>(true);
+    const [legendIsActive, setLegendIsActive] = useState<boolean>(true);
     const measurementTitleId = useId();
 
     function toggleMeasurement() {
         setMeasurementIsActive((previousIsActive) => !previousIsActive);
+    }
+
+    function toggleLegend() {
+        setLegendIsActive((previousIsActive) => !previousIsActive);
+    }
+
+    function toggleToc() {
+        setTocIsActive((previousIsActive) => !previousIsActive);
     }
 
     useEffect(() => {
@@ -88,29 +98,38 @@ export function Map() {
             {map && (
                 <DefaultMapProvider map={map}>
                     <MapContainer aria-label="Weather map">
-                        <MapAnchor position="top-left" horizontalGap={10} verticalGap={10}>
-                            <Box
-                                backgroundColor="white"
-                                borderWidth="1px"
-                                borderRadius="lg"
-                                padding={2}
-                                boxShadow="lg"
-                                aria-label="Map controls"
-                                w="400px"
-                            >
-                                <Toc
-                                    showTools={true}
-                                    basemapSwitcherProps={{
-                                        allowSelectingEmptyBasemap: true
-                                    }}
-                                />
-                                <TitledSection
-                                    title={<SectionHeading size="md">Legend</SectionHeading>}
+                        {(tocIsActive || legendIsActive) && (
+                            <MapAnchor position="top-left" horizontalGap={10} verticalGap={10}>
+                                <Box
+                                    backgroundColor="white"
+                                    borderWidth="1px"
+                                    borderRadius="lg"
+                                    padding={2}
+                                    boxShadow="lg"
+                                    aria-label="Map controls"
+                                    w="400px"
                                 >
-                                    <Legend showBaseLayers={false} />
-                                </TitledSection>
-                            </Box>
-                        </MapAnchor>
+                                    {tocIsActive && (
+                                        <Toc
+                                            showTools={true}
+                                            basemapSwitcherProps={{
+                                                allowSelectingEmptyBasemap: true
+                                            }}
+                                        />
+                                    )}
+                                    {tocIsActive && legendIsActive && <Separator my={3} />}
+                                    {legendIsActive && (
+                                        <TitledSection
+                                            title={
+                                                <SectionHeading size="md">Legend</SectionHeading>
+                                            }
+                                        >
+                                            <Legend showBaseLayers={false} />
+                                        </TitledSection>
+                                    )}
+                                </Box>
+                            </MapAnchor>
+                        )}
                         {clickedLocation && (
                             <MapAnchor position="top-right" horizontalGap={10} verticalGap={10}>
                                 <Box
@@ -148,6 +167,18 @@ export function Map() {
                         )}
                         <MapAnchor position="bottom-right" horizontalGap={10} verticalGap={30}>
                             <Flex aria-label="Maptools" direction="column" gap={1} padding={1}>
+                                <ToolButton
+                                    label="TOC"
+                                    icon={<LuMenu />}
+                                    active={tocIsActive}
+                                    onClick={toggleToc}
+                                />
+                                <ToolButton
+                                    label="Legend"
+                                    icon={<LuImages />}
+                                    active={legendIsActive}
+                                    onClick={toggleLegend}
+                                />
                                 <ToolButton
                                     label="Measurement"
                                     icon={<LuRuler />}
