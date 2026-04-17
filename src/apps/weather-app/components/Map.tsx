@@ -1,14 +1,18 @@
 // SPDX-FileCopyrightText: 2023-2025 Open Pioneer project (https://github.com/open-pioneer)
 // SPDX-License-Identifier: Apache-2.0
-import { Box, CloseButton, Separator } from "@chakra-ui/react";
+import { Box, CloseButton, Separator, Flex } from "@chakra-ui/react";
 import { DefaultMapProvider, MapContainer, MapAnchor, useMapModel } from "@open-pioneer/map";
 import { StaticCoordinateViewer } from "./StaticCoordinateViewer";
 import { SectionHeading, TitledSection } from "@open-pioneer/react-utils";
+import { ToolButton } from "@open-pioneer/map-ui-components";
 import { Toc } from "@open-pioneer/toc";
 import { Legend } from "@open-pioneer/legend";
 import Point from "ol/geom/Point";
 import { transform } from "ol/proj";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useId } from "react";
+import { LuRuler } from "react-icons/lu";
+import { InitialExtent, ZoomIn, ZoomOut } from "@open-pioneer/map-navigation";
+import { Measurement } from "@open-pioneer/measurement";
 
 const MAP_ID = "main";
 
@@ -20,6 +24,12 @@ interface ClickedLocation {
 export function Map() {
     const { map } = useMapModel(MAP_ID);
     const [clickedLocation, setClickedLocation] = useState<ClickedLocation | null>(null);
+    const [measurementIsActive, setMeasurementIsActive] = useState<boolean>(false);
+    const measurementTitleId = useId();
+
+    function toggleMeasurement() {
+        setMeasurementIsActive((previousIsActive) => !previousIsActive);
+    }
 
     useEffect(() => {
         if (!map) {
@@ -27,6 +37,10 @@ export function Map() {
         }
 
         const onSingleClick = (evt: unknown) => {
+            if (measurementIsActive) {
+                return;
+            }
+
             if (
                 !evt ||
                 typeof evt !== "object" ||
@@ -52,7 +66,7 @@ export function Map() {
         return () => {
             map.olMap.un("singleclick", onSingleClick);
         };
-    }, [map]);
+    }, [map, measurementIsActive]);
 
     useEffect(() => {
         if (!map || !clickedLocation) {
@@ -74,7 +88,7 @@ export function Map() {
             {map && (
                 <DefaultMapProvider map={map}>
                     <MapContainer aria-label="Weather map">
-                        <MapAnchor position="top-left" horizontalGap={5} verticalGap={5}>
+                        <MapAnchor position="top-left" horizontalGap={10} verticalGap={10}>
                             <Box
                                 backgroundColor="white"
                                 borderWidth="1px"
@@ -98,7 +112,7 @@ export function Map() {
                             </Box>
                         </MapAnchor>
                         {clickedLocation && (
-                            <MapAnchor position="top-right" horizontalGap={5} verticalGap={5}>
+                            <MapAnchor position="top-right" horizontalGap={10} verticalGap={10}>
                                 <Box
                                     backgroundColor="white"
                                     borderWidth="1px"
@@ -132,6 +146,47 @@ export function Map() {
                                 </Box>
                             </MapAnchor>
                         )}
+                        <MapAnchor position="bottom-right" horizontalGap={10} verticalGap={30}>
+                            <Flex aria-label="Maptools" direction="column" gap={1} padding={1}>
+                                <ToolButton
+                                    label="Measurement"
+                                    icon={<LuRuler />}
+                                    active={measurementIsActive}
+                                    onClick={toggleMeasurement}
+                                />
+                                <InitialExtent />
+                                <ZoomIn />
+                                <ZoomOut />
+                            </Flex>
+                        </MapAnchor>
+                        <MapAnchor position="bottom-left" horizontalGap={10} verticalGap={10}>
+                            {measurementIsActive && (
+                                <Box
+                                    backgroundColor="white"
+                                    borderWidth="1px"
+                                    borderRadius="lg"
+                                    padding={2}
+                                    boxShadow="lg"
+                                    aria-label="Measurement"
+                                >
+                                    <Box role="dialog" aria-labelledby={measurementTitleId}>
+                                        <TitledSection
+                                            title={
+                                                <SectionHeading
+                                                    id={measurementTitleId}
+                                                    size="md"
+                                                    mb={2}
+                                                >
+                                                    Measurement
+                                                </SectionHeading>
+                                            }
+                                        >
+                                            <Measurement />
+                                        </TitledSection>
+                                    </Box>
+                                </Box>
+                            )}
+                        </MapAnchor>
                     </MapContainer>
                 </DefaultMapProvider>
             )}
