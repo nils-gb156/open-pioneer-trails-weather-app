@@ -3,8 +3,7 @@
 
 import { Box, Separator, Text, VStack } from "@chakra-ui/react";
 import { DefaultMapProvider, MapContainer, MapAnchor, useMapModel } from "@open-pioneer/map";
-import { BasemapSwitcher } from "@open-pioneer/basemap-switcher";
-import { useId } from "react";
+import { Toc } from "@open-pioneer/toc";
 
 const MAP_ID = "main";
 
@@ -30,24 +29,12 @@ export function Map() {
                                 aria-label="Map controls"
                                 w="320px"
                             >
-                                <BasemapSwitcherComponent />
+                                <Toc />
                             </Box>
                         </MapAnchor>
                     </MapContainer>
                 </DefaultMapProvider>
             )}
         </div>
-    );
-}
-
-function BasemapSwitcherComponent() {
-    const labelId = useId();
-    return (
-        <VStack align="stretch" mt={2} gap={1}>
-            <Text id={labelId} as="b" mb={1}>
-                Basemap
-            </Text>
-            <BasemapSwitcher aria-labelledby={labelId} allowSelectingEmptyBasemap />
-        </VStack>
     );
 }
