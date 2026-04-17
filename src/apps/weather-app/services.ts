@@ -6,9 +6,13 @@ import {
     MapConfigProviderOptions,
     SimpleLayer
 } from "@open-pioneer/map";
+import EsriJSON from "ol/format/EsriJSON";
+import VectorLayer from "ol/layer/Vector";
 import TileLayer from "ol/layer/Tile";
-import XYZ from "ol/source/XYZ";
 import OSM from "ol/source/OSM";
+import VectorSource from "ol/source/Vector";
+import XYZ from "ol/source/XYZ";
+import { getCityStyle } from "./styles/worldCitiesStyle";
 
 export const MAP_ID = "main";
 
@@ -58,6 +62,18 @@ export class MainMapProvider implements MapConfigProvider {
                         properties: { title: "ArcGIS Dark Gray" }
                     }),
                     isBaseLayer: true
+                }),
+                layerFactory.create({
+                    type: SimpleLayer,
+                    title: "World Cities",
+                    olLayer: new VectorLayer({
+                        source: new VectorSource({
+                            format: new EsriJSON(),
+                            url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/World_Cities/FeatureServer/0/query?where=1%3D1&outFields=*&f=pjson&outSR=3857"
+                        }),
+                        style: getCityStyle,
+                        properties: { title: "World Cities" }
+                    })
                 })
             ]
         };
