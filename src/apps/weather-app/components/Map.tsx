@@ -6,14 +6,20 @@ import { CoordinateViewer } from "./CoordinateViewer";
 import { SectionHeading, TitledSection } from "@open-pioneer/react-utils";
 import { Toc } from "@open-pioneer/toc";
 import { Legend } from "@open-pioneer/legend";
+import Point from "ol/geom/Point";
 import { transform } from "ol/proj";
 import { useEffect, useState } from "react";
 
 const MAP_ID = "main";
 
+interface ClickedLocation {
+    coordinate: [number, number];
+    mapCoordinate: [number, number];
+}
+
 export function Map() {
     const { map } = useMapModel(MAP_ID);
-    const [clickedCoordinate, setClickedCoordinate] = useState<[number, number] | null>(null);
+    const [clickedLocation, setClickedLocation] = useState<ClickedLocation | null>(null);
 
     useEffect(() => {
         if (!map) {
@@ -36,7 +42,10 @@ export function Map() {
                 return;
             }
 
-            setClickedCoordinate([lonLat[1], lonLat[0]]);
+            setClickedLocation({
+                coordinate: [lonLat[1], lonLat[0]],
+                mapCoordinate: coordinate
+            });
         };
 
         map.olMap.on("singleclick", onSingleClick);
@@ -44,6 +53,17 @@ export function Map() {
             map.olMap.un("singleclick", onSingleClick);
         };
     }, [map]);
+
+    useEffect(() => {
+        if (!map || !clickedLocation) {
+            return;
+        }
+
+        const highlight = map.highlight([new Point(clickedLocation.mapCoordinate)]);
+        return () => {
+            highlight.destroy();
+        };
+    }, [map, clickedLocation]);
 
     if (!map) {
         return null;
@@ -77,7 +97,7 @@ export function Map() {
                                 </TitledSection>
                             </Box>
                         </MapAnchor>
-                        {clickedCoordinate && (
+                        {clickedLocation && (
                             <MapAnchor position="top-right" horizontalGap={5} verticalGap={5}>
                                 <Box
                                     backgroundColor="white"
@@ -95,7 +115,7 @@ export function Map() {
                                         top={2}
                                         right={2}
                                         onClick={() => {
-                                            setClickedCoordinate(null);
+                                            setClickedLocation(null);
                                         }}
                                     />
                                     <TitledSection
@@ -105,7 +125,7 @@ export function Map() {
                                             </SectionHeading>
                                         }
                                     >
-                                        <CoordinateViewer coordinate={clickedCoordinate} />
+                                        <CoordinateViewer coordinate={clickedLocation.coordinate} />
                                     </TitledSection>
                                 </Box>
                             </MapAnchor>
