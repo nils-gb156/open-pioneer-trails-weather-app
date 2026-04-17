@@ -23,20 +23,11 @@ export class MainMapProvider implements MapConfigProvider {
         return {
             initialView: {
                 kind: "position",
-                center: { x: 847541, y: 6793584 },
-                zoom: 13
+                center: { x: 1163010, y: 6650236 },
+                zoom: 6
             },
             projection: "EPSG:3857",
             layers: [
-                layerFactory.create({
-                    type: SimpleLayer,
-                    title: "OpenStreetMap",
-                    olLayer: new TileLayer({
-                        source: new OSM(),
-                        properties: { title: "OSM" }
-                    }),
-                    isBaseLayer: true
-                }),
                 layerFactory.create({
                     type: SimpleLayer,
                     title: "ArcGIS Gray Vector",
@@ -60,6 +51,15 @@ export class MainMapProvider implements MapConfigProvider {
                             maxZoom: 16
                         }),
                         properties: { title: "ArcGIS Dark Gray" }
+                    }),
+                    isBaseLayer: true
+                }),
+                layerFactory.create({
+                    type: SimpleLayer,
+                    title: "OpenStreetMap",
+                    olLayer: new TileLayer({
+                        source: new OSM(),
+                        properties: { title: "OSM" }
                     }),
                     isBaseLayer: true
                 }),
