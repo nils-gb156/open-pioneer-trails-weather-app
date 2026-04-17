@@ -36,6 +36,9 @@ catalogs:
     '@open-pioneer/geolocation':
       specifier: ^1.2.0
       version: 1.2.0
+    '@open-pioneer/legend':
+      specifier: ^1.2.0
+      version: 1.2.0
     '@open-pioneer/map':
       specifier: ^1.2.0
       version: 1.2.0
@@ -393,6 +396,9 @@ importers:
         specifier: 'catalog:'
         version: 1.2.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(typescript@5.9.3)
       '@open-pioneer/geolocation':
+        specifier: 'catalog:'
+        version: 1.2.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(typescript@5.9.3)
+      '@open-pioneer/legend':
         specifier: 'catalog:'
         version: 1.2.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(typescript@5.9.3)
       '@open-pioneer/map':
@@ -1076,6 +1082,9 @@ packages:
 
   '@open-pioneer/http@4.5.0':
     resolution: {integrity: sha512-y1cznLw4DHLcg9Pu9XHOSvvfu7lecJfNQyHt/IYvyT8hVJZ5fQ/jdYlyYWV5+1jKgKYzRhNF55Ju8HAp3cQVMw==}
+
+  '@open-pioneer/legend@1.2.0':
+    resolution: {integrity: sha512-B1N97mm7YOKzx0o0JtFNcr7vSaotdxHp1ufA/Cat4CFLA5A67mOQeBGsXYtIlI8ElW9R5Rrz22/NvSNQHV3swQ==}
 
   '@open-pioneer/map-navigation@1.2.0':
     resolution: {integrity: sha512-0mb1cSGDmI5spSpYbjywqL3Sr8X0LCC4QaG0uQFivbkVRu5AMxTcusXPSph/cznjmHmTeSsbWpI9tO3/ikQkZA==}
@@ -4944,6 +4953,23 @@ snapshots:
       '@open-pioneer/runtime': 4.5.0(@types/react@19.2.14)(typescript@5.9.3)
     transitivePeerDependencies:
       - '@types/react'
+      - typescript
+
+  '@open-pioneer/legend@1.2.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(typescript@5.9.3)':
+    dependencies:
+      '@chakra-ui/react': 3.34.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      '@open-pioneer/map': 1.2.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(typescript@5.9.3)
+      '@open-pioneer/react-utils': 4.5.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(react-dom@19.2.4(react@19.2.4))
+      '@open-pioneer/reactivity': 4.5.0
+      '@open-pioneer/runtime': 4.5.0(@types/react@19.2.14)(typescript@5.9.3)
+      classnames: 2.5.1
+      ol: 10.8.0
+      react: 19.2.4
+      react-icons: 5.6.0(react@19.2.4)
+    transitivePeerDependencies:
+      - '@emotion/react'
+      - '@types/react'
+      - react-dom
       - typescript
 
   '@open-pioneer/map-navigation@1.2.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(typescript@5.9.3)':

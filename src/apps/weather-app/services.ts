@@ -12,6 +12,7 @@ import TileLayer from "ol/layer/Tile";
 import OSM from "ol/source/OSM";
 import VectorSource from "ol/source/Vector";
 import XYZ from "ol/source/XYZ";
+import { WorldCitiesLegend } from "./styles/WorldCitiesLegend";
 import { getCityStyle } from "./styles/worldCitiesStyle";
 
 export const MAP_ID = "main";
@@ -66,6 +67,11 @@ export class MainMapProvider implements MapConfigProvider {
                 layerFactory.create({
                     type: SimpleLayer,
                     title: "World Cities",
+                    attributes: {
+                        legend: {
+                            Component: WorldCitiesLegend
+                        }
+                    },
                     olLayer: new VectorLayer({
                         source: new VectorSource({
                             format: new EsriJSON(),
