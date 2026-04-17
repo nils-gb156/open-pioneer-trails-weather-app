@@ -4,6 +4,7 @@
 import { Notifier } from "@open-pioneer/notifier";
 import { Map } from "./components/Map";
 import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 
 export function AppUI() {
     return (
@@ -13,6 +14,7 @@ export function AppUI() {
             <div style={{ flex: 1, overflow: "hidden" }}>
                 <Map />
             </div>
+            <Footer />
         </div>
     );
 }

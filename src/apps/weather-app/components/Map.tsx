@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { Box, CloseButton, Separator } from "@chakra-ui/react";
 import { DefaultMapProvider, MapContainer, MapAnchor, useMapModel } from "@open-pioneer/map";
-import { CoordinateViewer } from "./CoordinateViewer";
+import { StaticCoordinateViewer } from "./StaticCoordinateViewer";
 import { SectionHeading, TitledSection } from "@open-pioneer/react-utils";
 import { Toc } from "@open-pioneer/toc";
 import { Legend } from "@open-pioneer/legend";
@@ -125,7 +125,9 @@ export function Map() {
                                             </SectionHeading>
                                         }
                                     >
-                                        <CoordinateViewer coordinate={clickedLocation.coordinate} />
+                                        <StaticCoordinateViewer
+                                            coordinate={clickedLocation.coordinate}
+                                        />
                                     </TitledSection>
                                 </Box>
                             </MapAnchor>
