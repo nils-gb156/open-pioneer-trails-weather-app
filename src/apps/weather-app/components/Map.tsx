@@ -29,7 +29,12 @@ export function Map() {
                                 aria-label="Map controls"
                                 w="320px"
                             >
-                                <Toc />
+                                <Toc
+                                    showTools={true}
+                                    basemapSwitcherProps={{
+                                        allowSelectingEmptyBasemap: true
+                                    }}
+                                />
                             </Box>
                         </MapAnchor>
                     </MapContainer>
