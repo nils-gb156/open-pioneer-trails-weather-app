@@ -13,7 +13,7 @@ import { transform } from "ol/proj";
 import { useEffect, useId, useState } from "react";
 import { LuImages, LuMenu, LuRuler } from "react-icons/lu";
 import { StaticCoordinateViewer } from "./StaticCoordinateViewer";
-import { WeatherForecast } from "./WeatherForecast";
+import { WeatherCard } from "./WeatherCard";
 
 const MAP_ID = "main";
 
@@ -168,7 +168,7 @@ export function Map() {
                                             </SectionHeading>
                                         }
                                     >
-                                        <WeatherForecast coordinate={clickedLocation?.coordinate} />
+                                        <WeatherCard coordinate={clickedLocation?.coordinate} />
                                     </TitledSection>
                                 </>
                             )}
