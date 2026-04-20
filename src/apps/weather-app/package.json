@@ -2,9 +2,9 @@
     "name": "weather-app",
     "private": true,
     "dependencies": {
+        "@chakra-ui/react": "catalog:",
         "@emotion/react": "catalog:",
         "@emotion/styled": "catalog:",
-        "@chakra-ui/react": "catalog:",
         "@open-pioneer/basemap-switcher": "catalog:",
         "@open-pioneer/coordinate-viewer": "catalog:",
         "@open-pioneer/geolocation": "catalog:",
@@ -20,6 +20,7 @@
         "@open-pioneer/scale-viewer": "catalog:",
         "@open-pioneer/toc": "catalog:",
         "ol": "catalog:",
+        "opencage-api-client": "^2.1.0",
         "react": "catalog:",
         "react-dom": "catalog:",
         "react-icons": "catalog:",

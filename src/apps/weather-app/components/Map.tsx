@@ -13,6 +13,7 @@ import { transform } from "ol/proj";
 import { useEffect, useId, useState } from "react";
 import { LuImages, LuMenu, LuRuler } from "react-icons/lu";
 import { StaticCoordinateViewer } from "./StaticCoordinateViewer";
+import { WeatherForecast } from "./WeatherForecast";
 
 const MAP_ID = "main";
 
@@ -27,7 +28,7 @@ export function Map() {
     const [measurementIsActive, setMeasurementIsActive] = useState<boolean>(false);
     const [tocIsActive, setTocIsActive] = useState<boolean>(true);
     const [legendIsActive, setLegendIsActive] = useState<boolean>(true);
-    const [staticCoordinateViewerIsActive] = useState<boolean>(true);
+    const [weatherForecastIsActive, setweatherForecastIsActive] = useState<boolean>(false);
     const measurementTitleId = useId();
 
     function toggleMeasurement() {
@@ -80,7 +81,7 @@ export function Map() {
     }, [map, measurementIsActive]);
 
     useEffect(() => {
-        if (!map || !clickedLocation || !staticCoordinateViewerIsActive) {
+        if (!map || !clickedLocation) {
             return;
         }
 
@@ -88,7 +89,13 @@ export function Map() {
         return () => {
             highlight.destroy();
         };
-    }, [map, clickedLocation, staticCoordinateViewerIsActive]);
+    }, [map, clickedLocation]);
+
+    useEffect(() => {
+        if (clickedLocation?.coordinate) {
+            setweatherForecastIsActive(true);
+        }
+    }, [clickedLocation]);
 
     if (!map) {
         return null;
@@ -129,32 +136,44 @@ export function Map() {
                         </MapAnchor>
                     )}
 
-                    {staticCoordinateViewerIsActive && (
-                        <MapAnchor position="top-right" horizontalGap={10} verticalGap={10}>
-                            <Box
-                                backgroundColor="white"
-                                borderWidth="1px"
-                                borderRadius="lg"
-                                padding={2}
-                                boxShadow="lg"
-                                aria-label="Map controls"
-                                w="400px"
-                                position="relative"
+                    <MapAnchor position="top-right" horizontalGap={10} verticalGap={10}>
+                        <Box
+                            backgroundColor="white"
+                            borderWidth="1px"
+                            borderRadius="lg"
+                            padding={2}
+                            boxShadow="lg"
+                            aria-label="Map controls"
+                            w="400px"
+                            position="relative"
+                        >
+                            <TitledSection
+                                title={
+                                    <SectionHeading size="md">
+                                        Static Coordinate Viewer
+                                    </SectionHeading>
+                                }
                             >
-                                <TitledSection
-                                    title={
-                                        <SectionHeading size="md">
-                                            Static Coordinate Viewer
-                                        </SectionHeading>
-                                    }
-                                >
-                                    <StaticCoordinateViewer
-                                        coordinate={clickedLocation?.coordinate}
-                                    />
-                                </TitledSection>
-                            </Box>
-                        </MapAnchor>
-                    )}
+                                <StaticCoordinateViewer coordinate={clickedLocation?.coordinate} />
+                            </TitledSection>
+
+                            {weatherForecastIsActive && clickedLocation?.coordinate && (
+                                <>
+                                    <Separator my={3} />
+
+                                    <TitledSection
+                                        title={
+                                            <SectionHeading size="md">
+                                                Weather Forecast
+                                            </SectionHeading>
+                                        }
+                                    >
+                                        <WeatherForecast coordinate={clickedLocation?.coordinate} />
+                                    </TitledSection>
+                                </>
+                            )}
+                        </Box>
+                    </MapAnchor>
 
                     <MapAnchor position="bottom-right" horizontalGap={10} verticalGap={30}>
                         <Flex aria-label="Maptools" direction="column" gap={1} padding={1}>
