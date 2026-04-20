@@ -1,6 +1,6 @@
 // SPDX-FileCopyrightText: 2023-2025 Open Pioneer project (https://github.com/open-pioneer)
 // SPDX-License-Identifier: Apache-2.0
-import { Box, CloseButton, Flex, Separator } from "@chakra-ui/react";
+import { Box, Flex, Separator } from "@chakra-ui/react";
 import { Legend } from "@open-pioneer/legend";
 import { InitialExtent, ZoomIn, ZoomOut } from "@open-pioneer/map-navigation";
 import { DefaultMapProvider, MapAnchor, MapContainer, useMapModel } from "@open-pioneer/map";
@@ -11,8 +11,8 @@ import { Toc } from "@open-pioneer/toc";
 import Point from "ol/geom/Point";
 import { transform } from "ol/proj";
 import { useEffect, useId, useState } from "react";
-import { LuCloudSun, LuImages, LuMenu, LuRuler } from "react-icons/lu";
-import { WeatherForecast } from "./WeatherForecast";
+import { LuImages, LuMenu, LuRuler } from "react-icons/lu";
+import { StaticCoordinateViewer } from "./StaticCoordinateViewer";
 
 const MAP_ID = "main";
 
@@ -27,7 +27,7 @@ export function Map() {
     const [measurementIsActive, setMeasurementIsActive] = useState<boolean>(false);
     const [tocIsActive, setTocIsActive] = useState<boolean>(true);
     const [legendIsActive, setLegendIsActive] = useState<boolean>(true);
-    const [weatherForecastIsActive, setWeatherForecastIsActive] = useState<boolean>(true);
+    const [staticCoordinateViewerIsActive] = useState<boolean>(true);
     const measurementTitleId = useId();
 
     function toggleMeasurement() {
@@ -40,10 +40,6 @@ export function Map() {
 
     function toggleToc() {
         setTocIsActive((previousIsActive) => !previousIsActive);
-    }
-
-    function toggleWeatherForecast() {
-        setWeatherForecastIsActive((previousIsActive) => !previousIsActive);
     }
 
     useEffect(() => {
@@ -84,7 +80,7 @@ export function Map() {
     }, [map, measurementIsActive]);
 
     useEffect(() => {
-        if (!map || !clickedLocation || !weatherForecastIsActive) {
+        if (!map || !clickedLocation || !staticCoordinateViewerIsActive) {
             return;
         }
 
@@ -92,7 +88,7 @@ export function Map() {
         return () => {
             highlight.destroy();
         };
-    }, [map, clickedLocation, weatherForecastIsActive]);
+    }, [map, clickedLocation, staticCoordinateViewerIsActive]);
 
     if (!map) {
         return null;
@@ -133,7 +129,7 @@ export function Map() {
                         </MapAnchor>
                     )}
 
-                    {weatherForecastIsActive && (
+                    {staticCoordinateViewerIsActive && (
                         <MapAnchor position="top-right" horizontalGap={10} verticalGap={10}>
                             <Box
                                 backgroundColor="white"
@@ -147,10 +143,14 @@ export function Map() {
                             >
                                 <TitledSection
                                     title={
-                                        <SectionHeading size="md">Weather Forecast</SectionHeading>
+                                        <SectionHeading size="md">
+                                            Static Coordinate Viewer
+                                        </SectionHeading>
                                     }
                                 >
-                                    <WeatherForecast coordinate={clickedLocation?.coordinate} />
+                                    <StaticCoordinateViewer
+                                        coordinate={clickedLocation?.coordinate}
+                                    />
                                 </TitledSection>
                             </Box>
                         </MapAnchor>
@@ -158,12 +158,6 @@ export function Map() {
 
                     <MapAnchor position="bottom-right" horizontalGap={10} verticalGap={30}>
                         <Flex aria-label="Maptools" direction="column" gap={1} padding={1}>
-                            <ToolButton
-                                label="Weather Forecast"
-                                icon={<LuCloudSun />}
-                                active={weatherForecastIsActive}
-                                onClick={toggleWeatherForecast}
-                            />
                             <ToolButton
                                 label="Layer Switcher"
                                 icon={<LuMenu />}
