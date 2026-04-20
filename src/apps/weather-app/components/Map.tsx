@@ -175,7 +175,7 @@ export function Map() {
                         </Box>
                     </MapAnchor>
 
-                    <MapAnchor position="bottom-right" horizontalGap={10} verticalGap={30}>
+                    <MapAnchor position="bottom-left" horizontalGap={10} verticalGap={30}>
                         <Flex aria-label="Maptools" direction="column" gap={1} padding={1}>
                             <ToolButton
                                 label="Layer Switcher"
