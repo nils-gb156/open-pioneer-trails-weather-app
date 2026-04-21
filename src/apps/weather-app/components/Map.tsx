@@ -201,7 +201,7 @@ export function Map() {
                         </Flex>
                     </MapAnchor>
 
-                    <MapAnchor position="bottom-left" horizontalGap={10} verticalGap={10}>
+                    <MapAnchor position="bottom-left" horizontalGap={70} verticalGap={30}>
                         {measurementIsActive && (
                             <Box
                                 backgroundColor="white"
