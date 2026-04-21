@@ -11,8 +11,8 @@ import { Toc } from "@open-pioneer/toc";
 import Point from "ol/geom/Point";
 import { transform } from "ol/proj";
 import { useEffect, useId, useState } from "react";
-import { LuImages, LuMenu, LuRuler } from "react-icons/lu";
-import { StaticCoordinateViewer } from "./StaticCoordinateViewer";
+import { LuCloudSun, LuImages, LuMenu, LuRuler } from "react-icons/lu";
+import { LocationViewer } from "./LocationViewer";
 import { WeatherCard } from "./WeatherCard";
 
 const MAP_ID = "main";
@@ -28,7 +28,7 @@ export function Map() {
     const [measurementIsActive, setMeasurementIsActive] = useState<boolean>(false);
     const [tocIsActive, setTocIsActive] = useState<boolean>(true);
     const [legendIsActive, setLegendIsActive] = useState<boolean>(true);
-    const [weatherForecastIsActive, setweatherForecastIsActive] = useState<boolean>(false);
+    const [weatherForecastIsActive, setweatherForecastIsActive] = useState<boolean>(true);
     const measurementTitleId = useId();
 
     function toggleMeasurement() {
@@ -41,6 +41,10 @@ export function Map() {
 
     function toggleToc() {
         setTocIsActive((previousIsActive) => !previousIsActive);
+    }
+
+    function toggleWeatherForecast() {
+        setweatherForecastIsActive((previousIsActive) => !previousIsActive);
     }
 
     useEffect(() => {
@@ -148,16 +152,12 @@ export function Map() {
                             position="relative"
                         >
                             <TitledSection
-                                title={
-                                    <SectionHeading size="md">
-                                        Static Coordinate Viewer
-                                    </SectionHeading>
-                                }
+                                title={<SectionHeading size="md">Location Viewer</SectionHeading>}
                             >
-                                <StaticCoordinateViewer coordinate={clickedLocation?.coordinate} />
+                                <LocationViewer coordinate={clickedLocation?.coordinate} />
                             </TitledSection>
 
-                            {weatherForecastIsActive && clickedLocation?.coordinate && (
+                            {weatherForecastIsActive && (
                                 <>
                                     <Separator my={3} />
 
@@ -177,6 +177,12 @@ export function Map() {
 
                     <MapAnchor position="bottom-left" horizontalGap={10} verticalGap={30}>
                         <Flex aria-label="Maptools" direction="column" gap={1} padding={1}>
+                            <ToolButton
+                                label="Weather Forecast"
+                                icon={<LuCloudSun />}
+                                active={weatherForecastIsActive}
+                                onClick={toggleWeatherForecast}
+                            />
                             <ToolButton
                                 label="Layer Switcher"
                                 icon={<LuMenu />}

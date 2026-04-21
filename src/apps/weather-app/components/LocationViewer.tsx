@@ -2,11 +2,11 @@
 // SPDX-License-Identifier: Apache-2.0
 import { Text, Heading } from "@chakra-ui/react";
 
-export interface StaticCoordinateViewerProps {
+export interface LocationViewerProps {
     coordinate?: [number, number];
 }
 
-export function StaticCoordinateViewer({ coordinate }: StaticCoordinateViewerProps) {
+export function LocationViewer({ coordinate }: LocationViewerProps) {
     if (!coordinate) {
         return <Text fontSize="sm">Click in the map!</Text>;
     }
@@ -15,9 +15,6 @@ export function StaticCoordinateViewer({ coordinate }: StaticCoordinateViewerPro
 
     return (
         <>
-            <Heading as="h4" size="sm" mb={2} color="teal.700">
-                Hitten Coordinate
-            </Heading>
             <Text fontSize="sm" color="gray.700">
                 <strong>Lon:</strong> {longitude.toFixed(5)}°
             </Text>

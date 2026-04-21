@@ -61,7 +61,7 @@ export function WeatherForecast({ coordinate }: WeatherForecastProps) {
     }
 
     return (
-        <Box maxHeight="600px" overflowY="auto" border="1px solid #ccc" borderRadius="md" p={2}>
+        <Box maxHeight="760px" overflowY="auto" border="1px solid #ccc" borderRadius="md" p={2}>
             {forecast.map((entry: ForecastEntry, idx: number) => (
                 <div key={entry.dt}>
                     <div>
