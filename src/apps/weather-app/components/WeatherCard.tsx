@@ -26,7 +26,12 @@ export function WeatherCard({ coordinate }: WeatherCardProps) {
                 if (data.status.code === 200 && data.results.length > 0) {
                     const components = data.results[0]?.components;
                     const townName =
-                        components?.town || components?.city || components?.village || "Unknown";
+                        components?.town ||
+                        components?.city ||
+                        components?.village ||
+                        components?.city_district ||
+                        components?.county ||
+                        "Unknown";
                     setTown(townName);
                 } else {
                     setTown("Unknown");
