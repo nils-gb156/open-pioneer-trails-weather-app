@@ -27,7 +27,7 @@ export function Map() {
     const [clickedLocation, setClickedLocation] = useState<ClickedLocation | null>(null);
     const [measurementIsActive, setMeasurementIsActive] = useState<boolean>(false);
     const [tocIsActive, setTocIsActive] = useState<boolean>(true);
-    const [legendIsActive, setLegendIsActive] = useState<boolean>(true);
+    const [legendIsActive, setLegendIsActive] = useState<boolean>(false);
     const [weatherForecastIsActive, setweatherForecastIsActive] = useState<boolean>(true);
     const measurementTitleId = useId();
 
