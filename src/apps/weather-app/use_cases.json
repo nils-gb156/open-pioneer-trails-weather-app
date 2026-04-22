@@ -1,0 +1,214 @@
+{
+    "use_cases": [
+        {
+            "id": 1,
+            "title": "Display the default weather map",
+            "description": "The user wants to open the app and see the weather map with its default configuration.",
+            "preconditions": ["The user has started the app.", "The app is loaded successfully."],
+            "steps": [
+                "The user opens the main page of the weather app.",
+                "The app initializes the main map.",
+                "The app displays the default map view with the configured base layer and operational layers."
+            ],
+            "expected_result": [
+                "The main map is visible.",
+                "The user can interact with the map.",
+                "The default map view is loaded successfully."
+            ],
+            "complexity": "easy"
+        },
+        {
+            "id": 2,
+            "title": "Switch to the OpenStreetMap basemap",
+            "description": "The user wants to switch the basemap to OpenStreetMap to view the surroundings.",
+            "preconditions": [
+                "The user has started the app.",
+                "The map is visible.",
+                "The basemap-switcher (toc) is accessible and visible."
+            ],
+            "steps": [
+                "The user selects the OpenStreetMap basemap in dropdown.",
+                "The app replaces the currently visible basemap with OpenStreetMap."
+            ],
+            "expected_result": [
+                "The OpenStreetMap basemap is displayed.",
+                "The previous basemap is no longer active.",
+                "The user can continue panning and zooming on the map."
+            ],
+            "complexity": "easy"
+        },
+        {
+            "id": 3,
+            "title": "Show the World Cities layer",
+            "description": "The user wants to display the World Cities layer to see city locations on top of the basemap.",
+            "preconditions": [
+                "The user has started the app.",
+                "The map is visible.",
+                "The layer-switcher (toc) is accessible and visible."
+            ],
+            "steps": [
+                "The user enables the World Cities layer in the layer-switcher (toc).",
+                "The app loads and renders the city features on the map."
+            ],
+            "expected_result": [
+                "The World Cities layer is visible on the map.",
+                "City features are rendered on top of the active basemap.",
+                "The map remains interactive."
+            ],
+            "complexity": "easy"
+        },
+        {
+            "id": 4,
+            "title": "Display the legend",
+            "description": "The user wants to open the legend to understand the symbols used for the active layers.",
+            "preconditions": [
+                "The user has started the app.",
+                "The map is visible.",
+                "The World Cities layer is visible on the map."
+            ],
+            "steps": [
+                "The user clicks the legend tool button.",
+                "The app opens the legend panel.",
+                "The app displays the legend information for the active layers."
+            ],
+            "expected_result": [
+                "The legend panel is visible.",
+                "Legend entries for the active layers are displayed.",
+                "The user can inspect the map symbols."
+            ],
+            "complexity": "easy"
+        },
+        {
+            "id": 5,
+            "title": "Display coordinates of a clicked location",
+            "description": "The user wants to click on the map and see the geographic coordinates of the selected location.",
+            "preconditions": [
+                "The user has started the app.",
+                "The map is visible.",
+                "The measurement tool is not active."
+            ],
+            "steps": [
+                "The user clicks on a location in the map.",
+                "The app captures the clicked map position.",
+                "The app transforms the map coordinate to latitude and longitude.",
+                "The app displays the clicked coordinates in the location viewer."
+            ],
+            "expected_result": [
+                "The clicked map location is highlighted.",
+                "The location viewer shows longitude and latitude values.",
+                "The shown coordinates correspond to the clicked map position."
+            ],
+            "complexity": "medium"
+        },
+        {
+            "id": 6,
+            "title": "Show the town name for a clicked location",
+            "description": "The user wants to identify the nearest town or settlement for a clicked location on the map.",
+            "preconditions": [
+                "The user has started the app.",
+                "The map is visible.",
+                "A valid OpenCage API key is configured.",
+                "The measurement tool is not active."
+            ],
+            "steps": [
+                "The user clicks on a location in the map.",
+                "The app sends the clicked latitude and longitude to the reverse geocoding service.",
+                "The app resolves the location to a town, city, village, district, or county name.",
+                "The app displays the resolved place name in the weather forecast panel."
+            ],
+            "expected_result": [
+                "A place name is displayed for the selected coordinate.",
+                "If no detailed place name is found, a fallback name is shown.",
+                "The location information belongs to the clicked map position."
+            ],
+            "complexity": "medium"
+        },
+        {
+            "id": 7,
+            "title": "Display the weather forecast for a clicked location",
+            "description": "The user wants to click on the map and view the weather forecast for the selected location.",
+            "preconditions": [
+                "The user has started the app.",
+                "The map is visible.",
+                "A valid OpenWeatherMap API key is configured.",
+                "The measurement tool is not active."
+            ],
+            "steps": [
+                "The user clicks on a location in the map.",
+                "The app stores the selected coordinate.",
+                "The app opens or keeps open the weather forecast section.",
+                "The app requests forecast data for the selected coordinate.",
+                "The app displays forecast entries including datetime, weather description, temperature, humidity, wind direction, and wind speed."
+            ],
+            "expected_result": [
+                "The weather forecast section is visible.",
+                "Forecast data for the selected location is displayed.",
+                "Multiple forecast entries are shown in metric units."
+            ],
+            "complexity": "hard"
+        },
+        {
+            "id": 8,
+            "title": "Toggle the weather forecast panel",
+            "description": "The user wants to hide or show the weather forecast panel without changing the selected map location.",
+            "preconditions": [
+                "The user has started the app.",
+                "The map is visible.",
+                "A location has already been selected on the map."
+            ],
+            "steps": [
+                "The user clicks the weather forecast tool button.",
+                "The app toggles the visibility state of the weather forecast section.",
+                "The user clicks the weather forecast tool button again to restore the panel."
+            ],
+            "expected_result": [
+                "The weather forecast panel can be hidden.",
+                "The weather forecast panel can be shown again.",
+                "The selected map location remains unchanged while toggling the panel."
+            ],
+            "complexity": "easy"
+        },
+        {
+            "id": 9,
+            "title": "Open and close the toc",
+            "description": "The user wants to show or hide the toc to manage visible layers and basemaps.",
+            "preconditions": [
+                "The user has started the app.",
+                "The map is visible.",
+                "the toc is visible"
+            ],
+            "steps": [
+                "The user clicks the toc button.",
+                "The app close the toc panel.",
+                "The user clicks the toc button again.",
+                "The app opens thetoc panel."
+            ],
+            "expected_result": [
+                "The toc panel is hidden after the first click.",
+                "The toc panel is shown after the second click.",
+                "The map remains usable throughout the interaction."
+            ],
+            "complexity": "easy"
+        },
+        {
+            "id": 10,
+            "title": "Measure a distance on the map",
+            "description": "The user wants to activate the measurement tool and measure a distance directly on the map.",
+            "preconditions": ["The user has started the app.", "The map is visible."],
+            "steps": [
+                "The user clicks the measurement tool button.",
+                "The app activates the measurement mode and opens the measurement panel.",
+                "The user interacts with the map to define a measurement line.",
+                "The user ends the measurement line with a double click.",
+                "The app calculates and displays the measured distance."
+            ],
+            "expected_result": [
+                "Measurement mode is activated.",
+                "The measurement panel is visible.",
+                "A measurable geometry can be drawn on the map.",
+                "The measured result is displayed to the user."
+            ],
+            "complexity": "medium"
+        }
+    ]
+}
