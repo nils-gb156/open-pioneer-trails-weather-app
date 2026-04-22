@@ -43,10 +43,10 @@ export default defineConfig(({ mode }) => {
                 rootSite: true,
 
                 // Additional directories to include as html (must contain index.html files)
-                sites: ["sites/weather-app"],
+                sites: [],
 
                 // Apps to distribute as .js files for embedded use cases
-                apps: []
+                apps: ["weather-app"]
             }),
             react(),
             eslint()
