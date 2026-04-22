@@ -72,6 +72,7 @@ export class MainMapProvider implements MapConfigProvider {
                             Component: WorldCitiesLegend
                         }
                     },
+                    visible: false,
                     olLayer: new VectorLayer({
                         source: new VectorSource({
                             format: new EsriJSON(),
