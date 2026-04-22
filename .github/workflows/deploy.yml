@@ -27,6 +27,9 @@ jobs:
 
       - name: Build project
         run: pnpm build
+        env:
+          VITE_OPENCAGE_API_KEY: ${{ secrets.VITE_OPENCAGE_API_KEY }}
+          VITE_OPENWEATHERMAP_API_KEY: ${{ secrets.VITE_OPENWEATHERMAP_API_KEY }}
 
       - name: Add .nojekyll file
         run: touch dist/www/.nojekyll
