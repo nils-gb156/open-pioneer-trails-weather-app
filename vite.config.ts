@@ -23,8 +23,8 @@ export default defineConfig(({ mode }) => {
         // Load .env files from this directory instead of `root`.
         envDir: __dirname,
 
-        // Generates relative urls in html etc.
-        base: "./open-pioneer-trails-weather-app/",
+        // Set base for GitHub Pages deployment
+        base: "/open-pioneer-trails-weather-app/",
 
         // Vite's build output is written to dist/www
         build: {
