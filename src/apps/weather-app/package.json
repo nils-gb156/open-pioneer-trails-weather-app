@@ -25,5 +25,10 @@
         "react-dom": "catalog:",
         "react-icons": "catalog:",
         "react-use": "catalog:"
-    }
+    },
+    "devDependencies": {
+        "@playwright/test": "^1.59.1",
+        "@types/node": "catalog:"
+    },
+    "scripts": {}
 }
