@@ -1,0 +1,21 @@
+{
+    "test_ids": {
+        "map_container": "map-container",
+        "toc_panel": "toc-panel",
+        "legend_panel": "legend-panel",
+        "weather_forecast_panel": "weather-forecast-panel",
+        "location_viewer_panel": "location-viewer-panel",
+        "measurement_panel": "measurement-panel",
+
+        "toc_toggle": "toc-toggle",
+        "legend_toggle": "legend-toggle",
+        "measurement_toggle": "measurement-toggle",
+        "weather_forecast_toggle": "weather-forecast-toggle"
+    },
+    "default_map_visibility": [
+        "map-container",
+        "toc-panel",
+        "location-viewer-panel",
+        "weather-forecast-panel"
+    ]
+}
