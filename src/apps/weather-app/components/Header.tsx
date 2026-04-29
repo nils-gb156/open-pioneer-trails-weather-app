@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { Box, Heading } from "@chakra-ui/react";
 import { UseCases } from "./UseCases";
-import useCasesData from "../use_cases.json";
+import useCasesData from "../use_cases/use_cases.json";
 import { Button } from "@chakra-ui/react";
 import { useState } from "react";
 import { SectionHeading, TitledSection } from "@open-pioneer/react-utils";
