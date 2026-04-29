@@ -1,0 +1,21 @@
+{
+    "use_cases": [
+        {
+            "id": 1,
+            "title": "Display the default weather map",
+            "description": "The user wants to open the app and see the weather map with its default configuration.",
+            "preconditions": ["The user has started the app.", "The app is loaded successfully."],
+            "steps": [
+                "The user opens the main page of the weather app.",
+                "The app initializes the main map.",
+                "The app displays the default map view with the configured base layer and operational layers."
+            ],
+            "expected_result": [
+                "The main map is visible.",
+                "The user can interact with the map.",
+                "The default map view is loaded successfully."
+            ],
+            "complexity": "easy"
+        }
+    ]
+}

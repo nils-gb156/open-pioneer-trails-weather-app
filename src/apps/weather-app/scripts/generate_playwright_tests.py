@@ -10,7 +10,7 @@ LM_STUDIO_BASE_URL = "http://localhost:1234/v1"
 LM_STUDIO_API_KEY = "lm-studio"
 MODEL_NAME = "qwen/qwen2.5-coder-14b"
 
-USE_CASES_FILE = "../use_cases/use_cases.json"
+USE_CASES_FILE = "../use_cases/use_case_1.json"
 OUTPUT_DIR = "../tests/generated"
 BASE_URL = "http://localhost:5173/open-pioneer-trails-weather-app/"
 

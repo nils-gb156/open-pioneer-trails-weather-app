@@ -86,7 +86,8 @@ Make sure the app is running:
 
 Then execute the generated tests in ui:
 
-    npx playwright test src/apps/weather-app/tests/generated/ --ui
+    cd src/apps/weather-app
+    npx playwright test --ui
 
 ## License
 
