@@ -21,7 +21,8 @@
 
         // These options are necessary so that TypeDoc can resolve references across packages
         "declaration": true,
-        "declarationMap": true
+        "declarationMap": true,
+        "types": ["node"]
     },
     "include": ["src"],
     "exclude": ["**/dist/**", "**/node_modules/**"],
