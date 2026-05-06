@@ -127,14 +127,13 @@ export function Map() {
                                 data-testid="map-controls-panel"
                             >
                                 {tocIsActive && (
-                                    <Box data-testid="toc-panel">
-                                        <Toc
-                                            showTools={true}
-                                            basemapSwitcherProps={{
-                                                allowSelectingEmptyBasemap: true
-                                            }}
-                                        />
-                                    </Box>
+                                    <Toc
+                                        data-testid="toc-panel"
+                                        showTools={true}
+                                        basemapSwitcherProps={{
+                                            allowSelectingEmptyBasemap: true
+                                        }}
+                                    />
                                 )}
 
                                 {tocIsActive && legendIsActive && (
@@ -142,22 +141,19 @@ export function Map() {
                                 )}
 
                                 {legendIsActive && (
-                                    <Box data-testid="legend-panel">
-                                        <TitledSection
-                                            title={
-                                                <SectionHeading
-                                                    size="md"
-                                                    data-testid="legend-heading"
-                                                >
-                                                    Legend
-                                                </SectionHeading>
-                                            }
-                                        >
-                                            <Box data-testid="legend-content">
-                                                <Legend showBaseLayers={false} />
-                                            </Box>
-                                        </TitledSection>
-                                    </Box>
+                                    <TitledSection
+                                        data-testid="legend-panel"
+                                        title={
+                                            <SectionHeading size="md" data-testid="legend-heading">
+                                                Legend
+                                            </SectionHeading>
+                                        }
+                                    >
+                                        <Legend
+                                            data-testid="legend-content"
+                                            showBaseLayers={false}
+                                        />
+                                    </TitledSection>
                                 )}
                             </Box>
                         </MapAnchor>
@@ -180,45 +176,40 @@ export function Map() {
                             position="relative"
                             data-testid="info-panel"
                         >
-                            <Box data-testid="location-viewer-panel">
-                                <TitledSection
-                                    title={
-                                        <SectionHeading
-                                            size="md"
-                                            data-testid="location-viewer-heading"
-                                        >
-                                            Location Viewer
-                                        </SectionHeading>
-                                    }
-                                >
-                                    <Box data-testid="location-viewer-content">
-                                        <LocationViewer coordinate={clickedLocation?.coordinate} />
-                                    </Box>
-                                </TitledSection>
-                            </Box>
+                            <TitledSection
+                                data-testid="location-viewer-panel"
+                                title={
+                                    <SectionHeading size="md" data-testid="location-viewer-heading">
+                                        Location Viewer
+                                    </SectionHeading>
+                                }
+                            >
+                                <LocationViewer
+                                    data-testid="location-viewer-content"
+                                    coordinate={clickedLocation?.coordinate}
+                                />
+                            </TitledSection>
 
                             {weatherForecastIsActive && (
                                 <>
                                     <Separator my={3} data-testid="weather-forecast-separator" />
 
-                                    <Box data-testid="weather-forecast-panel">
-                                        <TitledSection
-                                            title={
-                                                <SectionHeading
-                                                    size="md"
-                                                    data-testid="weather-forecast-heading"
-                                                >
-                                                    Weather Forecast
-                                                </SectionHeading>
-                                            }
-                                        >
-                                            <Box data-testid="weather-forecast-content">
-                                                <WeatherCard
-                                                    coordinate={clickedLocation?.coordinate}
-                                                />
-                                            </Box>
-                                        </TitledSection>
-                                    </Box>
+                                    <TitledSection
+                                        data-testid="weather-forecast-panel"
+                                        title={
+                                            <SectionHeading
+                                                size="md"
+                                                data-testid="weather-forecast-heading"
+                                            >
+                                                Weather Forecast
+                                            </SectionHeading>
+                                        }
+                                    >
+                                        <WeatherCard
+                                            data-testid="weather-forecast-content"
+                                            coordinate={clickedLocation?.coordinate}
+                                        />
+                                    </TitledSection>
                                 </>
                             )}
                         </Box>
@@ -237,53 +228,43 @@ export function Map() {
                             padding={1}
                             data-testid="map-tools"
                         >
-                            <Box data-testid="weather-forecast-toggle">
-                                <ToolButton
-                                    label="Weather Forecast"
-                                    icon={<LuCloudSun />}
-                                    active={weatherForecastIsActive}
-                                    onClick={toggleWeatherForecast}
-                                />
-                            </Box>
+                            <ToolButton
+                                data-testid="weather-forecast-toggle"
+                                label="Weather Forecast"
+                                icon={<LuCloudSun />}
+                                active={weatherForecastIsActive}
+                                onClick={toggleWeatherForecast}
+                            />
 
-                            <Box data-testid="toc-toggle">
-                                <ToolButton
-                                    label="Layer Switcher"
-                                    icon={<LuMenu />}
-                                    active={tocIsActive}
-                                    onClick={toggleToc}
-                                />
-                            </Box>
+                            <ToolButton
+                                data-testid="toc-toggle"
+                                label="Layer Switcher"
+                                icon={<LuMenu />}
+                                active={tocIsActive}
+                                onClick={toggleToc}
+                            />
 
-                            <Box data-testid="legend-toggle">
-                                <ToolButton
-                                    label="Legend"
-                                    icon={<LuImages />}
-                                    active={legendIsActive}
-                                    onClick={toggleLegend}
-                                />
-                            </Box>
+                            <ToolButton
+                                data-testid="legend-toggle"
+                                label="Legend"
+                                icon={<LuImages />}
+                                active={legendIsActive}
+                                onClick={toggleLegend}
+                            />
 
-                            <Box data-testid="measurement-toggle">
-                                <ToolButton
-                                    label="Measurement"
-                                    icon={<LuRuler />}
-                                    active={measurementIsActive}
-                                    onClick={toggleMeasurement}
-                                />
-                            </Box>
+                            <ToolButton
+                                data-testid="measurement-toggle"
+                                label="Measurement"
+                                icon={<LuRuler />}
+                                active={measurementIsActive}
+                                onClick={toggleMeasurement}
+                            />
 
-                            <Box data-testid="initial-extent-button">
-                                <InitialExtent />
-                            </Box>
+                            <InitialExtent data-testid="initial-extent-button" />
 
-                            <Box data-testid="zoom-in-button">
-                                <ZoomIn />
-                            </Box>
+                            <ZoomIn data-testid="zoom-in-button" />
 
-                            <Box data-testid="zoom-out-button">
-                                <ZoomOut />
-                            </Box>
+                            <ZoomOut data-testid="zoom-out-button" />
                         </Flex>
                     </MapAnchor>
 
@@ -320,9 +301,7 @@ export function Map() {
                                             </SectionHeading>
                                         }
                                     >
-                                        <Box data-testid="measurement-content">
-                                            <Measurement />
-                                        </Box>
+                                        <Measurement data-testid="measurement-content" />
                                     </TitledSection>
                                 </Box>
                             </Box>
