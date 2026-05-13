@@ -1,0 +1,47 @@
+[33m7c07f48[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m fix env api keys
+[33m16195b2[m fix missing env api keys
+[33m6d8bf07[m add deployment workflow
+[33m9377be4[m deployment fixes and remove workflows
+[33m370641d[m fix version
+[33m29e5d84[m deployment settings
+[33ma515b4f[m fix: update dependencies
+[33m6b41f70[m show use cases in ui
+[33mbb1a58f[m adjust default map zoom
+[33m83d7202[m hide world cities layer by default
+[33m57da428[m hide legend by default
+[33m6cd18e4[m add use cases
+[33m7333bad[m prepare deployment
+[33m0d780f6[m ui improvement for location and weather
+[33md4dbd1a[m fix location results
+[33m7a7c7f7[m fix measurement ui place
+[33mf9ca2af[m remove empty site
+[33mff4d686[m add OpenWeatherMap API Key
+[33m98d1c6b[m edit readme
+[33m8c90cbc[m remove empty and sample apps
+[33m5284ead[m add weather app to landing page
+[33m62c23b4[m change maptools position
+[33mc7fa526[m feat: weather forecast by openweathermap
+[33m51b3efa[m remove unused imports
+[33m1cd7475[m feat: reverse Geocoder
+[33m064a710[m add weather app to landing page
+[33m248284f[m feat: adjust static coordinate viewer
+[33m4c61149[m feat: toogle button for weather forecast card
+[33m5e0666c[m feat: toggle buttons for toc and legend
+[33m1fd3bcd[m feat: add toolbar for zoom and measurement
+[33m182c927[m feat: add footer with coordinate viewer, scalebar and scale viewer
+[33mcb884af[m feat: add marker by clicking on the map
+[33m1dd2bc5[m feat: add coordinate viewer for static coordinates in WGS84
+[33m17b20d3[m feat: add legend and legend-city-styling
+[33mbbfd32f[m feat: add toc props
+[33m7c46aa1[m feat: add toc and remove basemap switcher
+[33macd713e[m feat: change map config
+[33m1c40bbc[m feat: add world city layer with styling
+[33m57fac22[m feat: add Notifier
+[33m58e6906[m feat: add Header
+[33me4273f7[m feat: add arcgis light and dark gray vector basemaps
+[33meb6935c[m feat: add basemap switcher
+[33me470a8a[m chore: update pnpm-lock
+[33m6725207[m feat: add map with osm basemap
+[33m76d070a[m feat: prepare building the site
+[33mba001d7[m feat: create empty weather app
+[33m0e3a3b7[m Initial commit
