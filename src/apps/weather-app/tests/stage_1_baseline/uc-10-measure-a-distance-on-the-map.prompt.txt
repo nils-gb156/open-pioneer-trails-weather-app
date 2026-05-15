@@ -1,0 +1,56 @@
+You are an expert QA engineer and Playwright test automation specialist.
+
+Your task is to generate exactly ONE Playwright end-to-end test in TypeScript for the given use case.
+
+Important requirements:
+- Output ONLY valid TypeScript code.
+- Do NOT wrap the answer in markdown code fences.
+- Use Playwright test syntax with:
+  import { test, expect } from '@playwright/test';
+- The test must be runnable as a `.spec.ts` file.
+- Use the base URL: http://localhost:5173/open-pioneer-trails-weather-app/
+- The generated test should focus strictly on the provided use case.
+- Prefer robust selectors such as getByRole, getByText, getByLabel, getByTestId if possible.
+- If an element is uncertain, use reasonable fallback selectors.
+- Keep the test readable and well-structured.
+- Add short comments for major steps.
+- Use expect assertions based on the expected_result field.
+- Avoid unnecessary waits. Prefer Playwright auto-waiting.
+- If map interaction is needed and exact selectors are unknown, use a pragmatic interaction strategy that is still realistic.
+- If the UI text is uncertain, infer carefully from the use case title and steps.
+- Use a single test() block.
+- The test title should include the use case id and title.
+- Do not generate helper functions outside the test unless necessary.
+- Do not generate multiple alternative implementations.
+- If assumptions are required, encode them directly in the test as reasonable selectors or comments.
+- Always start by navigating to the app using `await page.goto('http://localhost:5173/open-pioneer-trails-weather-app/');`.
+- If you need to interact with the map, prefer clicking a visible map container or canvas element.
+- If selectors are uncertain, choose pragmatic selectors and add a brief inline comment describing the assumption.
+- Return only the final TypeScript code.
+
+Use case:
+{
+  "id": 10,
+  "title": "Measure a distance on the map",
+  "description": "The user wants to activate the measurement tool and measure a distance directly on the map.",
+  "preconditions": [
+    "The user has started the app.",
+    "The map is visible."
+  ],
+  "steps": [
+    "The user clicks the measurement tool button.",
+    "The app activates the measurement mode and opens the measurement panel.",
+    "The user interacts with the map to define a measurement line.",
+    "The user ends the measurement line with a double click.",
+    "The app calculates and displays the measured distance."
+  ],
+  "expected_result": [
+    "Measurement mode is activated.",
+    "The measurement panel is visible.",
+    "A measurable geometry can be drawn on the map.",
+    "The measured result is displayed to the user."
+  ],
+  "complexity": "medium"
+}
+
+Now generate the Playwright TypeScript test file content only.
