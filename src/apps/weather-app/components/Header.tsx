@@ -14,6 +14,7 @@ export function Header() {
         <Box
             role="region"
             aria-label="Header Bar"
+            data-testid="header"
             py={2}
             px={4}
             backgroundColor="white"
@@ -21,11 +22,14 @@ export function Header() {
             minHeight="auto"
         >
             <Box position="relative" display="flex" alignItems="center" justifyContent="center">
-                <Heading size="md" flex={1} textAlign="center">
+                <Heading data-testid="header-title" size="md" flex={1} textAlign="center">
                     Open Pioneer Trails - Weather App
                 </Heading>
                 <Box position="absolute" right={0}>
-                    <Button onClick={() => setUseCasesIsActive(!useCasesIsActive)}>
+                    <Button
+                        data-testid="use-cases-button"
+                        onClick={() => setUseCasesIsActive(!useCasesIsActive)}
+                    >
                         Use Cases
                     </Button>
                 </Box>
@@ -43,6 +47,7 @@ export function Header() {
                     justifyContent="center"
                     backgroundColor="rgba(0,0,0,0.4)"
                     zIndex={1000}
+                    data-testid="use-cases-overlay"
                 >
                     <Box
                         backgroundColor="white"
@@ -55,6 +60,7 @@ export function Header() {
                         width="100%"
                         display="flex"
                         flexDirection="column"
+                        data-testid="use-cases-dialog"
                     >
                         <Box flex="auto" overflowY="auto">
                             <TitledSection
@@ -64,7 +70,12 @@ export function Header() {
                             </TitledSection>
                         </Box>
                         <Box display="flex" justifyContent="flex-end" mt={4}>
-                            <Button onClick={() => setUseCasesIsActive(false)}>Close</Button>
+                            <Button
+                                data-testid="use-cases-close-button"
+                                onClick={() => setUseCasesIsActive(false)}
+                            >
+                                Close
+                            </Button>
                         </Box>
                     </Box>
                 </Box>

@@ -53,36 +53,45 @@ export function WeatherForecast({ coordinate }: WeatherForecastProps) {
     }, [coordinate, apiKey]);
 
     if (error) {
-        return <p>{error}</p>;
+        return <p data-testid="weather-forecast-error">{error}</p>;
     }
 
     if (!forecast.length) {
-        return <p>Loading...</p>;
+        return <p data-testid="weather-forecast-loading">Loading...</p>;
     }
 
     return (
-        <Box maxHeight="760px" overflowY="auto" border="1px solid #ccc" borderRadius="md" p={2}>
+        <Box
+            data-testid="weather-forecast-container"
+            maxHeight="760px"
+            overflowY="auto"
+            border="1px solid #ccc"
+            borderRadius="md"
+            p={2}
+        >
             {forecast.map((entry: ForecastEntry, idx: number) => (
-                <div key={entry.dt}>
-                    <div>
+                <div key={entry.dt} data-testid={`forecast-entry-${idx}`}>
+                    <div data-testid={`forecast-dt-${idx}`}>
                         <strong>Dateitme:</strong> {entry.dt_txt}
                     </div>
-                    <div>
+                    <div data-testid={`forecast-weather-${idx}`}>
                         <strong>weather:</strong> {entry.weather?.[0]?.description}
                     </div>
-                    <div>
+                    <div data-testid={`forecast-temp-${idx}`}>
                         <strong>temperature:</strong> {entry.main?.temp} °C
                     </div>
-                    <div>
+                    <div data-testid={`forecast-humidity-${idx}`}>
                         <strong>humidity:</strong> {entry.main?.humidity} %
                     </div>
-                    <div>
+                    <div data-testid={`forecast-wind-deg-${idx}`}>
                         <strong>winddirection:</strong> {entry.wind?.deg}°
                     </div>
-                    <div>
+                    <div data-testid={`forecast-wind-speed-${idx}`}>
                         <strong>windspeed:</strong> {entry.wind?.speed} m/s
                     </div>
-                    {idx < forecast.length - 1 && <Separator my={3} />}
+                    {idx < forecast.length - 1 && (
+                        <Separator my={3} data-testid={`forecast-separator-${idx}`} />
+                    )}
                 </div>
             ))}
         </Box>

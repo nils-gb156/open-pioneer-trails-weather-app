@@ -42,7 +42,7 @@ export function WeatherCard({ coordinate }: WeatherCardProps) {
 
     if (!coordinate) {
         return (
-            <Text fontSize="sm" color="gray.700">
+            <Text data-testid="weathercard-empty" fontSize="sm" color="gray.700">
                 <strong>Location:</strong> No coordinate selected
             </Text>
         );
@@ -50,7 +50,7 @@ export function WeatherCard({ coordinate }: WeatherCardProps) {
 
     if (!apiKey) {
         return (
-            <Text fontSize="sm" color="red.500">
+            <Text data-testid="weathercard-error" fontSize="sm" color="red.500">
                 <strong>Error:</strong> API key is missing!
             </Text>
         );
@@ -58,10 +58,10 @@ export function WeatherCard({ coordinate }: WeatherCardProps) {
 
     return (
         <>
-            <Text fontSize="sm" color="gray.700">
+            <Text data-testid="weathercard-location" fontSize="sm" color="gray.700">
                 <strong>Location:</strong> {town ?? "Loading..."}
             </Text>
-            <WeatherForecast coordinate={coordinate} />
+            <WeatherForecast data-testid="weather-forecast-component" coordinate={coordinate} />
         </>
     );
 }

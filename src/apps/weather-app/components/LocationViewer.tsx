@@ -8,17 +8,21 @@ export interface LocationViewerProps {
 
 export function LocationViewer({ coordinate }: LocationViewerProps) {
     if (!coordinate) {
-        return <Text fontSize="sm">Click in the map!</Text>;
+        return (
+            <Text data-testid="location-empty" fontSize="sm">
+                Click in the map!
+            </Text>
+        );
     }
 
     const [latitude, longitude] = coordinate;
 
     return (
         <>
-            <Text fontSize="sm" color="gray.700">
+            <Text data-testid="location-longitude" fontSize="sm" color="gray.700">
                 <strong>Lon:</strong> {longitude.toFixed(5)}°
             </Text>
-            <Text fontSize="sm" color="gray.700">
+            <Text data-testid="location-latitude" fontSize="sm" color="gray.700">
                 <strong>Lat:</strong> {latitude.toFixed(5)}°
             </Text>
         </>

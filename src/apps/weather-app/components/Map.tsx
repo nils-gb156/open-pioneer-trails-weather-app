@@ -106,11 +106,16 @@ export function Map() {
     }
 
     return (
-        <div style={{ width: "100%", height: "100%" }}>
+        <div style={{ width: "100%", height: "100%" }} data-testid="map-root">
             <DefaultMapProvider map={map}>
-                <MapContainer aria-label="Weather map">
+                <MapContainer aria-label="Weather map" data-testid="map-container">
                     {(tocIsActive || legendIsActive) && (
-                        <MapAnchor position="top-left" horizontalGap={10} verticalGap={10}>
+                        <MapAnchor
+                            position="top-left"
+                            horizontalGap={10}
+                            verticalGap={10}
+                            data-testid="top-left-anchor"
+                        >
                             <Box
                                 backgroundColor="white"
                                 borderWidth="1px"
@@ -119,95 +124,156 @@ export function Map() {
                                 boxShadow="lg"
                                 aria-label="Map controls"
                                 w="400px"
+                                data-testid="map-controls-panel"
                             >
                                 {tocIsActive && (
                                     <Toc
+                                        data-testid="toc-panel"
                                         showTools={true}
                                         basemapSwitcherProps={{
                                             allowSelectingEmptyBasemap: true
                                         }}
                                     />
                                 )}
-                                {tocIsActive && legendIsActive && <Separator my={3} />}
+
+                                {tocIsActive && legendIsActive && (
+                                    <Separator my={3} data-testid="toc-legend-separator" />
+                                )}
+
                                 {legendIsActive && (
                                     <TitledSection
-                                        title={<SectionHeading size="md">Legend</SectionHeading>}
+                                        data-testid="legend-panel"
+                                        title={
+                                            <SectionHeading size="md" data-testid="legend-heading">
+                                                Legend
+                                            </SectionHeading>
+                                        }
                                     >
-                                        <Legend showBaseLayers={false} />
+                                        <Legend
+                                            data-testid="legend-content"
+                                            showBaseLayers={false}
+                                        />
                                     </TitledSection>
                                 )}
                             </Box>
                         </MapAnchor>
                     )}
 
-                    <MapAnchor position="top-right" horizontalGap={10} verticalGap={10}>
+                    <MapAnchor
+                        position="top-right"
+                        horizontalGap={10}
+                        verticalGap={10}
+                        data-testid="top-right-anchor"
+                    >
                         <Box
                             backgroundColor="white"
                             borderWidth="1px"
                             borderRadius="lg"
                             padding={2}
                             boxShadow="lg"
-                            aria-label="Map controls"
+                            aria-label="Map info panel"
                             w="400px"
                             position="relative"
+                            data-testid="info-panel"
                         >
                             <TitledSection
-                                title={<SectionHeading size="md">Location Viewer</SectionHeading>}
+                                data-testid="location-viewer-panel"
+                                title={
+                                    <SectionHeading size="md" data-testid="location-viewer-heading">
+                                        Location Viewer
+                                    </SectionHeading>
+                                }
                             >
-                                <LocationViewer coordinate={clickedLocation?.coordinate} />
+                                <LocationViewer
+                                    data-testid="location-viewer-content"
+                                    coordinate={clickedLocation?.coordinate}
+                                />
                             </TitledSection>
 
                             {weatherForecastIsActive && (
                                 <>
-                                    <Separator my={3} />
+                                    <Separator my={3} data-testid="weather-forecast-separator" />
 
                                     <TitledSection
+                                        data-testid="weather-forecast-panel"
                                         title={
-                                            <SectionHeading size="md">
+                                            <SectionHeading
+                                                size="md"
+                                                data-testid="weather-forecast-heading"
+                                            >
                                                 Weather Forecast
                                             </SectionHeading>
                                         }
                                     >
-                                        <WeatherCard coordinate={clickedLocation?.coordinate} />
+                                        <WeatherCard
+                                            data-testid="weather-forecast-content"
+                                            coordinate={clickedLocation?.coordinate}
+                                        />
                                     </TitledSection>
                                 </>
                             )}
                         </Box>
                     </MapAnchor>
 
-                    <MapAnchor position="bottom-left" horizontalGap={10} verticalGap={30}>
-                        <Flex aria-label="Maptools" direction="column" gap={1} padding={1}>
+                    <MapAnchor
+                        position="bottom-left"
+                        horizontalGap={10}
+                        verticalGap={30}
+                        data-testid="bottom-left-tools-anchor"
+                    >
+                        <Flex
+                            aria-label="Maptools"
+                            direction="column"
+                            gap={1}
+                            padding={1}
+                            data-testid="map-tools"
+                        >
                             <ToolButton
+                                data-testid="weather-forecast-toggle"
                                 label="Weather Forecast"
                                 icon={<LuCloudSun />}
                                 active={weatherForecastIsActive}
                                 onClick={toggleWeatherForecast}
                             />
+
                             <ToolButton
+                                data-testid="toc-toggle"
                                 label="Layer Switcher"
                                 icon={<LuMenu />}
                                 active={tocIsActive}
                                 onClick={toggleToc}
                             />
+
                             <ToolButton
+                                data-testid="legend-toggle"
                                 label="Legend"
                                 icon={<LuImages />}
                                 active={legendIsActive}
                                 onClick={toggleLegend}
                             />
+
                             <ToolButton
+                                data-testid="measurement-toggle"
                                 label="Measurement"
                                 icon={<LuRuler />}
                                 active={measurementIsActive}
                                 onClick={toggleMeasurement}
                             />
-                            <InitialExtent />
-                            <ZoomIn />
-                            <ZoomOut />
+
+                            <InitialExtent data-testid="initial-extent-button" />
+
+                            <ZoomIn data-testid="zoom-in-button" />
+
+                            <ZoomOut data-testid="zoom-out-button" />
                         </Flex>
                     </MapAnchor>
 
-                    <MapAnchor position="bottom-left" horizontalGap={70} verticalGap={30}>
+                    <MapAnchor
+                        position="bottom-left"
+                        horizontalGap={70}
+                        verticalGap={30}
+                        data-testid="bottom-left-measurement-anchor"
+                    >
                         {measurementIsActive && (
                             <Box
                                 backgroundColor="white"
@@ -216,20 +282,26 @@ export function Map() {
                                 padding={2}
                                 boxShadow="lg"
                                 aria-label="Measurement"
+                                data-testid="measurement-panel"
                             >
-                                <Box role="dialog" aria-labelledby={measurementTitleId}>
+                                <Box
+                                    role="dialog"
+                                    aria-labelledby={measurementTitleId}
+                                    data-testid="measurement-dialog"
+                                >
                                     <TitledSection
                                         title={
                                             <SectionHeading
                                                 id={measurementTitleId}
                                                 size="md"
                                                 mb={2}
+                                                data-testid="measurement-heading"
                                             >
                                                 Measurement
                                             </SectionHeading>
                                         }
                                     >
-                                        <Measurement />
+                                        <Measurement data-testid="measurement-content" />
                                     </TitledSection>
                                 </Box>
                             </Box>
