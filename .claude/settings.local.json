@@ -1,5 +1,9 @@
 {
     "permissions": {
-        "allow": ["Bash(pnpm exec *)"]
+        "allow": [
+            "Bash(pnpm exec *)",
+            "Bash(python -c \"from playwright.sync_api import sync_playwright; p = sync_playwright\\(\\).start\\(\\); b = p.chromium.launch\\(headless=True\\); page = b.new_page\\(\\); page.goto\\('http://localhost:5173/open-pioneer-trails-weather-app/', timeout=10000\\); print\\('OK:', page.title\\(\\)\\); b.close\\(\\); p.stop\\(\\)\")",
+            "Bash(python -c ' *)"
+        ]
     }
 }
